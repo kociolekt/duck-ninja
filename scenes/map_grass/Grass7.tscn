@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/map_grass/tileset/basic_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/Challenge.gd" type="Script" id=2]
+[ext_resource path="res://scenes/coin/Coin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/checkpoint/Checkpoint.tscn" type="PackedScene" id=4]
+
+[node name="map" type="TileMap"]
+position = Vector2( 185, 358 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -196603, 2, 0, -196602, 2, 2, -131067, 2, 65536, -131066, 2, 65540, -131065, 2, 2, -65531, 2, 65536, -65530, 2, 262147, -65529, 2, 65540, -65528, 2, 1, -65527, 2, 1, -65526, 2, 1, -65525, 2, 1, -65524, 2, 1, -65523, 2, 1, -65522, 2, 2, 5, 2, 65536, 6, 2, 262144, 7, 2, 65537, 8, 2, 262145, 9, 2, 65537, 10, 2, 65537, 11, 2, 65537, 12, 2, 262147, 13, 2, 65537, 14, 2, 65538, 65541, 2, 65536, 65542, 2, 65537, 65543, 2, 65537, 65544, 2, 196609, 65545, 2, 262144, 65546, 2, 262145, 65547, 2, 65537, 65548, 2, 196609, 65549, 2, 262144, 65550, 2, 65538, 131077, 2, 65536, 131078, 2, 262144, 131079, 2, 196608, 131080, 2, 65537, 131081, 2, 65537, 131082, 2, 262144, 131083, 2, 262144, 131084, 2, 196608, 131085, 2, 196609, 131086, 2, 65538, 196613, 2, 65536, 196614, 2, 262144, 196615, 2, 262147, 196616, 2, 262144, 196617, 2, 196609, 196618, 2, 65537, 196619, 2, 262144, 196620, 2, 65537, 196621, 2, 65537, 196622, 2, 65538, 262149, 2, 131072, 262150, 2, 131073, 262151, 2, 131073, 262152, 2, 131073, 262153, 2, 131073, 262154, 2, 131073, 262155, 2, 131073, 262156, 2, 131073, 262157, 2, 131073, 262158, 2, 131074 )
+script = ExtResource( 2 )
+start = Vector2( 5, -3 )
+end = Vector2( 14, -1 )
+
+[node name="Coin" parent="." instance=ExtResource( 3 )]
+position = Vector2( 104, -57 )
+
+[node name="Coin2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 152, -25 )
+
+[node name="Checkpoint" parent="." instance=ExtResource( 4 )]
+position = Vector2( 89, -59 )

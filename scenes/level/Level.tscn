@@ -1,0 +1,307 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://assets/map_grass/tileset/basic_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/checkpoint/Checkpoint.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/coin/Coin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/buttons/touch_button_right.png" type="Texture" id=4]
+[ext_resource path="res://assets/companion/cat2_green_eyes.png" type="Texture" id=5]
+[ext_resource path="res://assets/companion/cat1_geen_eyes.png" type="Texture" id=6]
+[ext_resource path="res://assets/map_grass/paralax/sky.png" type="Texture" id=7]
+[ext_resource path="res://assets/buttons/touch_button_jump.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/duck-ninja_sprite.png" type="Texture" id=9]
+[ext_resource path="res://assets/buttons/touch_button_left.png" type="Texture" id=10]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=11]
+[ext_resource path="res://scenes/level/Level.gd" type="Script" id=12]
+[ext_resource path="res://scripts/GeneratedMap.gd" type="Script" id=14]
+[ext_resource path="res://scripts/Coins.gd" type="Script" id=15]
+[ext_resource path="res://scripts/Companion.gd" type="Script" id=16]
+[ext_resource path="res://scenes/map_grass/GrassBackground1.tscn" type="PackedScene" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 5 )
+
+[sub_resource type="Animation" id=2]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 3, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 2, 4 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 1.0
+} ]
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="MapGenerator" type="TileMap" parent="."]
+position = Vector2( 172, 23 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+collision_layer = 9
+collision_mask = 9
+format = 1
+tile_data = PoolIntArray( -196613, 2, 0, -196612, 2, 2, -131077, 2, 65536, -131076, 2, 65538, -65541, 2, 65536, -65540, 2, 65538, -5, 2, 65536, -4, 2, 65538, 65531, 2, 65536, 65532, 2, 65538, 131067, 2, 65536, 131068, 2, 65538, 131069, 3, 0, 131070, 3, 0, 131071, 3, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 196603, 2, 65536, 196604, 2, 65540, 196605, 2, 1, 196606, 2, 1, 196607, 2, 1, 131072, 2, 1, 131073, 2, 1, 131074, 2, 2, 262139, 2, 65536, 262140, 2, 262144, 262141, 2, 65537, 262142, 2, 196609, 262143, 2, 65537, 196608, 2, 65537, 196609, 2, 262144, 196610, 2, 65538, 327675, 2, 131072, 327676, 2, 131073, 327677, 2, 131073, 327678, 2, 131073, 327679, 2, 131073, 262144, 2, 131073, 262145, 2, 131073, 262146, 2, 131074 )
+script = ExtResource( 14 )
+end = Vector2( 3, 2 )
+
+[node name="Coin2" parent="MapGenerator" instance=ExtResource( 3 )]
+position = Vector2( 31, 14 )
+
+[node name="Coin" parent="MapGenerator" instance=ExtResource( 3 )]
+position = Vector2( 13, 13 )
+
+[node name="Checkpoint" parent="MapGenerator" instance=ExtResource( 2 )]
+position = Vector2( 38, 21 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 160, 5 )
+script = ExtResource( 11 )
+speed = Vector2( 30, 60 )
+
+[node name="CoinCollider" type="Area2D" parent="Player"]
+position = Vector2( 0, 1 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CoinCollider"]
+shape = SubResource( 1 )
+
+[node name="CheckpointCollider" type="Area2D" parent="Player"]
+position = Vector2( 0, 1 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CheckpointCollider"]
+shape = SubResource( 1 )
+
+[node name="CliffDetectorTop" type="RayCast2D" parent="Player"]
+position = Vector2( 2, -5 )
+enabled = true
+cast_to = Vector2( 2, 0 )
+
+[node name="CliffDetectorBottom" type="RayCast2D" parent="Player"]
+position = Vector2( 2, -2 )
+enabled = true
+cast_to = Vector2( 2, 0 )
+
+[node name="CliffDetectorTop2" type="RayCast2D" parent="Player"]
+position = Vector2( -2, -5 )
+enabled = true
+cast_to = Vector2( -2, 0 )
+
+[node name="CliffDetectorBottom2" type="RayCast2D" parent="Player"]
+position = Vector2( -2, -2 )
+enabled = true
+cast_to = Vector2( -2, 0 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 9 )
+vframes = 2
+hframes = 6
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+anims/crouch = SubResource( 2 )
+anims/falling = SubResource( 3 )
+anims/hang = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/jumping = SubResource( 6 )
+anims/run = SubResource( 7 )
+
+[node name="UI" type="CanvasLayer" parent="Player"]
+
+[node name="Left" type="TouchScreenButton" parent="Player/UI"]
+position = Vector2( 17, 397 )
+normal = ExtResource( 10 )
+passby_press = true
+action = "move_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="Player/UI"]
+position = Vector2( 89, 397 )
+normal = ExtResource( 4 )
+passby_press = true
+action = "move_right"
+visibility_mode = 1
+
+[node name="Jump" type="TouchScreenButton" parent="Player/UI"]
+position = Vector2( 553, 397 )
+normal = ExtResource( 8 )
+action = "jump"
+visibility_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 0, 1 )
+shape = SubResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+process_mode = 0
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 275, -133 )
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 800, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 198, -10 )
+scale = Vector2( 60, 4 )
+texture = ExtResource( 7 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.66, 0.909333, 1, 0.733333 )
+position = Vector2( 92, 45 )
+z_index = 10
+motion_scale = Vector2( 0.2, 0.2 )
+motion_mirroring = Vector2( 728, 0 )
+
+[node name="map" parent="ParallaxBackground/ParallaxLayer3" instance=ExtResource( 17 )]
+position = Vector2( -45, -11 )
+scale = Vector2( 0.25, 0.25 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color( 0.65098, 0.909804, 1, 1 )
+position = Vector2( 199, 52 )
+z_index = 14
+motion_scale = Vector2( 0.4, 0.4 )
+motion_mirroring = Vector2( 1450, 0 )
+
+[node name="map" parent="ParallaxBackground/ParallaxLayer2" instance=ExtResource( 17 )]
+position = Vector2( -135, 71 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="GUI2" type="MarginContainer" parent="GUI"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 265.0
+margin_bottom = 182.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="RichTextLabel" parent="GUI/GUI2"]
+margin_right = 257.0
+margin_bottom = 174.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cat" type="KinematicBody2D" parent="."]
+position = Vector2( 151, 5 )
+collision_layer = 8
+collision_mask = 8
+script = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cat"]
+position = Vector2( -1, 3 )
+shape = SubResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Cat"]
+position = Vector2( 0, -2 )
+frames = SubResource( 10 )
+frame = 1
+playing = true
+[connection signal="player_stats_changed" from="Player" to="GUI/GUI2/Coins" method="_on_Player_player_stats_changed"]
+[connection signal="body_entered" from="Player/CoinCollider" to="Player" method="_on_CoinCollider_body_entered"]
+[connection signal="area_shape_entered" from="Player/CheckpointCollider" to="Player" method="_on_CheckpointCollider_area_shape_entered"]

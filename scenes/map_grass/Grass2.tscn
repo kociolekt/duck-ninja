@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/map_grass/tileset/basic_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/Challenge.gd" type="Script" id=2]
+[ext_resource path="res://scenes/coin/Coin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/checkpoint/Checkpoint.tscn" type="PackedScene" id=4]
+
+[node name="map" type="TileMap"]
+position = Vector2( -312, 280 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -327682, 2, 5, -327681, 2, 6, -393216, 2, 6, -393215, 2, 6, -393214, 2, 7, -327677, 2, 5, -327676, 2, 6, -327675, 2, 6, -327674, 2, 6, -327673, 2, 7, -262140, 3, 0, -262136, 2, 4, -131072, 3, 0, -131070, 3, 0, -131068, 2, 3, -131065, 2, 3, -131064, 3, 0, -131063, 3, 0, -131062, 3, 0, -131061, 3, 0, -131060, 3, 0, -131059, 3, 0, -131058, 3, 0, -65533, 2, 0, -65532, 2, 65541, -65529, 2, 131077, -65528, 2, 6, -65527, 2, 6, -65526, 2, 6, -65525, 2, 6, -65524, 2, 6, -65523, 2, 7, -65522, 3, 0, 0, 2, 3, 2, 2, 0, 3, 2, 196612, 4, 2, 65538, 7, 2, 65539, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 0, 65536, 2, 65539, 65538, 2, 65536, 65539, 2, 65537, 65540, 2, 65538, 65543, 2, 65539, 131072, 2, 65539, 131074, 2, 65536, 131075, 2, 262146, 131076, 2, 65538, 131079, 2, 65539, 196608, 2, 65539, 196610, 2, 65536, 196611, 2, 196610, 196612, 2, 65538, 196615, 2, 65539, 262144, 2, 131075, 262146, 2, 131072, 262147, 2, 131073, 262148, 2, 131074, 262151, 2, 131075 )
+script = ExtResource( 2 )
+start = Vector2( -4, -5 )
+end = Vector2( 13, -1 )
+
+[node name="Coin" parent="." instance=ExtResource( 3 )]
+position = Vector2( 69, -42 )
+
+[node name="Coin2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 89, -85 )
+
+[node name="Checkpoint" parent="." instance=ExtResource( 4 )]
+position = Vector2( 8, -11 )
+
+[node name="Checkpoint2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -24, -108 )
