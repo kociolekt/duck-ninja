@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/duck-ninja`,
   siteMetadata: {
     title: `Duck Ninja Game Site`,
     description: `Platformer Duck Ninja is in alpha draft pre-release and cannot be considered as final product in any way.`,
