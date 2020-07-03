@@ -1,0 +1,11 @@
+.box {
+  background-color: $color-white-transparent;
+  color: $color-darg-grey;
+  padding: 20px;
+
+  &__title {
+    margin: 0 0 10px 0;
+    color: $color-darg-blue;
+    
+  }
+}

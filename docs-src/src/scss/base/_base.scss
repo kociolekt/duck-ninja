@@ -1,0 +1,32 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background-color: $color-light-blue;
+  font-family: $font-family-press-start;
+  line-height: 1.4;
+
+
+  @media (min-width: $break-sm) {
+    background-image: url('../images/ninja_duck_page_background.png');
+    background-position: right bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  &:link, &:hover, &:active {
+    color: $color-light-blue;
+  }
+  &:visited {
+    color: $color-darg-blue;
+  }
+}

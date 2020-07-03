@@ -1,0 +1,22 @@
+
+.main-layout {
+  &__container {
+    margin: 0 10px;
+
+    @media (min-width: $break-sm) {
+      margin: 0 0 0 5%;
+      width: 45%;
+    }
+  }
+
+  &__side {
+    margin: 0 10px;
+    
+    @media (min-width: $break-sm) {
+      position: absolute;
+      width: 30%;
+      top: 120px;
+      right: 40px;
+    }
+  }
+}
