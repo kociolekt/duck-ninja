@@ -28,11 +28,12 @@ onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 onready var camera = $Camera2D
 
-var coins = 0;
+export var coins = 0;
 var last_checkpoint = Vector2.ZERO;
 
 func _ready():
 	last_checkpoint = position
+	yield(get_tree().create_timer(.5), "timeout") # waiting for GUI to be ready and connected
 	emit_signal("player_stats_changed", self)
 
 func _input(event):
@@ -196,6 +197,13 @@ func reset_to_last_checkpoint():
 	camera.zoom = Vector2.ZERO
 	position = last_checkpoint
 	camera.zoom = tmpZoom
+
+func save():
+	var save_dict = {
+		"path"  : get_path(),
+		"coins" : coins
+	}
+	return save_dict
 
 func _on_CoinCollider_body_entered(coin):
 	coins += coin.amount

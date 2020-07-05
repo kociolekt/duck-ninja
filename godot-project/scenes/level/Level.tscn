@@ -127,6 +127,25 @@ animations = [ {
 [node name="Level" type="Node2D"]
 script = ExtResource( 12 )
 
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="GUI2" type="MarginContainer" parent="GUI"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 265.0
+margin_bottom = 182.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="RichTextLabel" parent="GUI/GUI2"]
+margin_right = 257.0
+margin_bottom = 174.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MapGenerator" type="TileMap" parent="."]
 position = Vector2( 172, 23 )
 tile_set = ExtResource( 1 )
@@ -148,7 +167,9 @@ position = Vector2( 13, 13 )
 [node name="Checkpoint" parent="MapGenerator" instance=ExtResource( 2 )]
 position = Vector2( 38, 21 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="." groups=[
+"Persist",
+]]
 position = Vector2( 160, 5 )
 script = ExtResource( 11 )
 speed = Vector2( 30, 60 )
@@ -267,25 +288,6 @@ motion_mirroring = Vector2( 1450, 0 )
 [node name="map" parent="ParallaxBackground/ParallaxLayer2" instance=ExtResource( 17 )]
 position = Vector2( -135, 71 )
 scale = Vector2( 0.5, 0.5 )
-
-[node name="GUI" type="CanvasLayer" parent="."]
-
-[node name="GUI2" type="MarginContainer" parent="GUI"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 265.0
-margin_bottom = 182.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Coins" type="RichTextLabel" parent="GUI/GUI2"]
-margin_right = 257.0
-margin_bottom = 174.0
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Cat" type="KinematicBody2D" parent="."]
 position = Vector2( 151, 5 )
