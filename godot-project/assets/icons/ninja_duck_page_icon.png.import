@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-816117353ba57afc3af521f78eedcc3c.stex"
+path="res://.import/ninja_duck_page_icon.png-99b1050000c53c5873715870a05ecbde.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/icon.png"
-dest_files=[ "res://.import/icon.png-816117353ba57afc3af521f78eedcc3c.stex" ]
+source_file="res://assets/icons/ninja_duck_page_icon.png"
+dest_files=[ "res://.import/ninja_duck_page_icon.png-99b1050000c53c5873715870a05ecbde.stex" ]
 
 [params]
 

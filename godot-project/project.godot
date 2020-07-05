@@ -34,7 +34,7 @@ _global_script_class_icons={
 
 config/name="duck-ninja"
 run/main_scene="res://scenes/game/Game.tscn"
-config/icon="res://assets/icons/icon.png"
+config/icon="res://assets/icons/ninja_duck_page_icon.png"
 
 [display]
 
