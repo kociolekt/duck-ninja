@@ -19,6 +19,7 @@ export var can_cliff = true
 export var can_dash = 2
 export var can_run = true
 export var can_double_jump = 2
+export var can_wall_jump = 4
 
 onready var cliff_detector_top = $CliffDetectorTop
 onready var cliff_detector_top2 = $CliffDetectorTop2
@@ -59,6 +60,10 @@ var is_dashing = false
 var dashed = 0
 var is_on_cliff = false
 
+var wall_jump_timeout = 0.3
+var wall_jump_direction = 0
+var is_wall_jump_eligible = 0
+var is_wall_jumping = false
 
 func _physics_process(_delta):
 	var is_on_floor = is_on_floor()
@@ -117,7 +122,7 @@ func _physics_process(_delta):
 	if is_on_floor:
 		double_jumped = 0
 	
-	if (jump_just_pressed and is_on_floor) or (jump_just_pressed and can_double_jump > double_jumped):
+	if not is_wall_jump_eligible and ((jump_just_pressed and is_on_floor) or (jump_just_pressed and can_double_jump > double_jumped)):
 		_velocity.y = -50
 		jump_was_pressed = true
 		if not is_on_floor:
@@ -127,6 +132,31 @@ func _physics_process(_delta):
 		_velocity.y -= 0.5
 	else:
 		jump_was_pressed = false
+		
+	# wall jumping
+	if cliff_detector_bottom.is_colliding() and Input.get_action_strength("move_right" + action_suffix):
+		is_wall_jump_eligible = wall_jump_timeout
+		wall_jump_direction = -1
+	elif cliff_detector_bottom2.is_colliding() and Input.get_action_strength("move_left" + action_suffix):
+		is_wall_jump_eligible = wall_jump_timeout
+		wall_jump_direction = 1
+	else:
+		is_wall_jump_eligible = is_wall_jump_eligible - _delta if is_wall_jump_eligible - _delta > 0 else 0
+		
+	if is_wall_jump_eligible > 0:
+		_velocity.y = _velocity.y if _velocity.y < 10 else 1
+		if (Input.get_action_strength("move_left" + action_suffix) and wall_jump_direction == -1) or (Input.get_action_strength("move_right" + action_suffix) and wall_jump_direction == 1):
+			if jump_just_pressed:
+				_velocity.y = -50
+				jump_was_pressed = true
+				is_wall_jumping = true
+	else:
+		is_wall_jumping = false
+	
+	if is_wall_jumping:
+		_velocity.x = wall_jump_direction * is_wall_jump_eligible * 100
+	
+	print(double_jumped)
 	
 	# cliff
 	if is_on_cliff():
@@ -156,8 +186,6 @@ func _physics_process(_delta):
 	# sprite direction
 	if move_direction != 0:
 		sprite.scale.x = 1 if move_direction > 0 else -1
-	
-	print(_velocity.y)
 	
 	# animation
 	var animation = get_new_animation()
