@@ -60,7 +60,7 @@ var is_dashing = false
 var dashed = 0
 var is_on_cliff = false
 
-var wall_jump_timeout = 0.3
+var wall_jump_timeout = 0.4
 var wall_jump_direction = 0
 var is_wall_jump_eligible = 0
 var is_wall_jumping = false
@@ -147,14 +147,18 @@ func _physics_process(_delta):
 		_velocity.y = _velocity.y if _velocity.y < 10 else 1
 		if (Input.get_action_strength("move_left" + action_suffix) and wall_jump_direction == -1) or (Input.get_action_strength("move_right" + action_suffix) and wall_jump_direction == 1):
 			if jump_just_pressed:
-				_velocity.y = -50
+				_velocity.y = -40
 				jump_was_pressed = true
 				is_wall_jumping = true
 	else:
 		is_wall_jumping = false
 	
 	if is_wall_jumping:
-		_velocity.x = wall_jump_direction * is_wall_jump_eligible * 100
+		print(move_direction, wall_jump_direction)
+		if move_direction == wall_jump_direction:
+			_velocity.x = wall_jump_direction * is_wall_jump_eligible * 300 if abs(_velocity.x) > walk_max_speed else wall_jump_direction * walk_max_speed
+		else:
+			_velocity.x = wall_jump_direction * is_wall_jump_eligible * 100
 	
 	# cliff
 	if is_on_cliff():

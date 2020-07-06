@@ -302,6 +302,7 @@ shape = SubResource( 9 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Cat"]
 position = Vector2( 0, -2 )
 frames = SubResource( 10 )
+frame = 1
 playing = true
 [connection signal="player_stats_changed" from="Player" to="GUI/GUI2/Coins" method="_on_Player_player_stats_changed"]
 [connection signal="body_entered" from="Player/CoinCollider" to="Player" method="_on_CoinCollider_body_entered"]
