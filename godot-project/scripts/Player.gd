@@ -173,7 +173,6 @@ func _physics_process(_delta):
 		reset_to_last_checkpoint()
 	
 	# actually moving
-	
 	var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if !jump_just_pressed else Vector2.ZERO
 	_velocity = move_and_slide_with_snap(
 		_velocity, snap_vector, FLOOR_NORMAL, false, 4, 0.9, false
@@ -188,7 +187,6 @@ func _physics_process(_delta):
 	
 	# animation
 	var animation = get_new_animation()
-	print(animation, is_on_floor(), _velocity.y)
 	if animation != animation_player.current_animation:
 		animation_player.play(animation)
 

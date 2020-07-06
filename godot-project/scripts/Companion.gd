@@ -88,10 +88,12 @@ func do_walk_to_position(target_position):
 	
 	_velocity.x = (_velocity.x + direction_x) if abs(_velocity.x) < max_speed else direction_x * max_speed
 	
-	if distance_x < 1:
-		global_position = target_position
-		current_target = null
-		current_state = State.IDLE
+	if distance_x < 0.3:
+		global_position.x = target_position.x
+		
+		if sign(target_position.y - global_position.y) < 5:
+			current_target = null
+			current_state = State.IDLE
 		
 var is_jumping = false
 var jump_p0 = null
@@ -106,13 +108,21 @@ func do_jump_to_position(target_position, delta):
 	
 	if !is_jumping:
 		var mid_point_x = global_position.x + int(sub_x / 2)
-		var mid_point_y = min(global_position.y, target_position.y) - 16
+		var mid_point_y = min(global_position.y, target_position.y) - 29
 		
 		jump_p0 = global_position
 		jump_p1 = Vector2(mid_point_x, mid_point_y)
 		jump_p2 = target_position
 		
-		if check_trajectory_collision():
+		var jump_lp0 = jump_p0 + Vector2(-3, 0)
+		var jump_lp1 = jump_p1 + Vector2(-3, 0)
+		var jump_lp2 = jump_p2 + Vector2(-3, 0)
+		
+		var jump_pp0 = jump_p0 + Vector2(3, 0)
+		var jump_pp1 = jump_p1 + Vector2(3, 0)
+		var jump_pp2 = jump_p2 + Vector2(3, 0)
+		
+		if check_trajectory_collision(jump_p0, jump_p1, jump_p2) or check_trajectory_collision(jump_lp0, jump_lp1, jump_lp2) or check_trajectory_collision(jump_pp0, jump_pp1, jump_pp2):
 			current_state = State.TELEPORT
 		else:
 			is_jumping = true
@@ -121,14 +131,21 @@ func do_jump_to_position(target_position, delta):
 		jump_time += delta
 		global_position = _quadratic_bezier(jump_p0, jump_p1, jump_p2, jump_time)
 		_velocity = Vector2.ZERO
+		if jump_time > delta * 2 and get_slide_count() > 0:
+			is_jumping = false
+			jump_time = 0
+			_velocity = Vector2.ZERO
+			current_state = State.TELEPORT
 		
-	if distance_x < 1:
-		global_position = target_position
-		current_target = null
-		current_state = State.IDLE
-		is_jumping = false
-		jump_time = 0
-		_velocity = Vector2.ZERO
+	if distance_x < 0.3:
+		global_position.x = target_position.x
+		
+		if sign(target_position.y - global_position.y) < 5:
+			current_target = null
+			current_state = State.IDLE
+			is_jumping = false
+			jump_time = 0
+			_velocity = Vector2.ZERO
 
 func do_teleport_to_position(target_position):
 	global_position = target_position
@@ -138,13 +155,13 @@ func do_teleport_to_position(target_position):
 	is_jumping = false
 	jump_time = 0
 
-func check_trajectory_collision():
+func check_trajectory_collision(p0, p1, p2):
 	var space_state = get_world_2d().direct_space_state
-	var point1 = _quadratic_bezier(jump_p0, jump_p1, jump_p2, 0.01)
-	var point2 = _quadratic_bezier(jump_p0, jump_p1, jump_p2, 0.25)
-	var point3 = _quadratic_bezier(jump_p0, jump_p1, jump_p2, 0.50)
-	var point4 = _quadratic_bezier(jump_p0, jump_p1, jump_p2, 0.75)
-	var point5 = _quadratic_bezier(jump_p0, jump_p1, jump_p2, 0.99)
+	var point1 = _quadratic_bezier(p0, p1, p2, 0.01)
+	var point2 = _quadratic_bezier(p0, p1, p2, 0.25)
+	var point3 = _quadratic_bezier(p0, p1, p2, 0.50)
+	var point4 = _quadratic_bezier(p0, p1, p2, 0.75)
+	var point5 = _quadratic_bezier(p0, p1, p2, 0.99)
 	# use global coordinates, not local to node
 	var result1 = space_state.intersect_ray(point1, point2)
 	var result2 = space_state.intersect_ray(point2, point3)
