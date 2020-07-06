@@ -64,6 +64,7 @@ var wall_jump_timeout = 0.4
 var wall_jump_direction = 0
 var is_wall_jump_eligible = 0
 var is_wall_jumping = false
+var is_on_wall = false
 
 func _physics_process(_delta):
 	var is_on_floor = is_on_floor()
@@ -77,6 +78,7 @@ func _physics_process(_delta):
 	
 	if (is_on_floor or is_running) and (key_chain == ["Right", "Right"] or key_chain == ["Left", "Left"]):
 		walk_max_speed *= 3
+		is_running = true
 		is_running = true
 	
 	if not is_dashing:
@@ -137,11 +139,14 @@ func _physics_process(_delta):
 	if cliff_detector_bottom.is_colliding() and Input.get_action_strength("move_right" + action_suffix):
 		is_wall_jump_eligible = wall_jump_timeout
 		wall_jump_direction = -1
+		is_on_wall = true
 	elif cliff_detector_bottom2.is_colliding() and Input.get_action_strength("move_left" + action_suffix):
 		is_wall_jump_eligible = wall_jump_timeout
 		wall_jump_direction = 1
+		is_on_wall = true
 	else:
 		is_wall_jump_eligible = is_wall_jump_eligible - _delta if is_wall_jump_eligible - _delta > 0 else 0
+		is_on_wall = false
 		
 	if is_wall_jump_eligible > 0:
 		_velocity.y = _velocity.y if _velocity.y < 10 else 1
@@ -154,7 +159,6 @@ func _physics_process(_delta):
 		is_wall_jumping = false
 	
 	if is_wall_jumping:
-		print(move_direction, wall_jump_direction)
 		if move_direction == wall_jump_direction:
 			_velocity.x = wall_jump_direction * is_wall_jump_eligible * 300 if abs(_velocity.x) > walk_max_speed else wall_jump_direction * walk_max_speed
 		else:
@@ -190,19 +194,26 @@ func _physics_process(_delta):
 		sprite.scale.x = 1 if move_direction > 0 else -1
 	
 	# animation
-	var animation = get_new_animation()
+	var animation = get_new_animation(is_dashing, is_on_wall, is_wall_jumping)
 	if animation != animation_player.current_animation:
 		animation_player.play(animation)
 
 
-func get_new_animation():
+func get_new_animation(is_dashing, is_on_wall, is_wall_jumping):
 	var animation_new = ""
 	if is_on_floor():
 		animation_new = "run" if abs(_velocity.x) > 0.1 else "idle"
 	elif is_on_cliff:
 		animation_new = "hang"
 	elif not is_on_floor():
-		animation_new = "falling" if _velocity.y > 0 else "jumping"
+		if is_on_wall:
+			animation_new = "hang_wall"
+		elif is_wall_jumping:
+			animation_new = "wall_jump"
+		elif is_dashing:
+			animation_new = "dash"
+		else:
+			animation_new = "falling" if _velocity.y > 0 else "jumping"
 	return animation_new
 
 

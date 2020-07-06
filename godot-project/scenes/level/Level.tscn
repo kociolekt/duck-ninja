@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/map_grass/tileset/basic_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/checkpoint/Checkpoint.tscn" type="PackedScene" id=2]
@@ -34,6 +34,23 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "dash"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 9 ]
+}
+
 [sub_resource type="Animation" id=3]
 length = 0.6
 loop = true
@@ -62,6 +79,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 7 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "hang_wall"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -108,6 +140,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 6, 3, 1 ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "wall_jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
 }
 
 [sub_resource type="RectangleShape2D" id=8]
@@ -214,15 +261,18 @@ cast_to = Vector2( -1, 0 )
 texture = ExtResource( 9 )
 vframes = 2
 hframes = 6
-frame = 6
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 anims/crouch = SubResource( 2 )
+anims/dash = SubResource( 11 )
 anims/falling = SubResource( 3 )
 anims/hang = SubResource( 4 )
+anims/hang_wall = SubResource( 12 )
 anims/idle = SubResource( 5 )
 anims/jumping = SubResource( 6 )
 anims/run = SubResource( 7 )
+anims/wall_jump = SubResource( 13 )
 
 [node name="UI" type="CanvasLayer" parent="Player"]
 
