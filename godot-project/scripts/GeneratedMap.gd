@@ -32,6 +32,7 @@ func preload_arenas():
 	arenas.push_back(preload("res://scenes/map_grass/Grass8.tscn").instance())
 	arenas.push_back(preload("res://scenes/map_grass/Grass9.tscn").instance())
 	arenas.push_back(preload("res://scenes/map_grass/Grass10.tscn").instance())
+	arenas.push_back(preload("res://scenes/map_grass/Grass11.tscn").instance())
 	pass
 
 func get_random_arena():
