@@ -11,7 +11,7 @@ const IndexPage = () => (
     <MainLayoutSide>
       <div className="box">
         <h2 className="box__title">Download</h2>
-        <a href="https://github.com/kociolekt/duck-ninja/releases/download/0.0.1/duck-ninja.0.0.1.zip" target="_blank">for Windows</a>
+        <a href="https://github.com/kociolekt/duck-ninja/releases/download/0.0.2/duck-ninja.0.0.2.zip" target="_blank">for Windows</a>
       </div>
     </MainLayoutSide>
     <MainLayoutContainer>
