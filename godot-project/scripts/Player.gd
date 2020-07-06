@@ -3,7 +3,7 @@ extends Actor
 
 signal player_stats_changed
 
-const FLOOR_DETECT_DISTANCE = 5.0
+const FLOOR_DETECT_DISTANCE = 6.0
 
 const DOUBLE_KEY_TIMEOUT = 0.3 # Timeout between key presses
 const MAX_KEY_CHAIN = 2
@@ -122,8 +122,6 @@ func _physics_process(_delta):
 	if is_on_floor:
 		double_jumped = 0
 	
-	print(is_wall_jump_eligible)
-	
 	if (not is_wall_jump_eligible or is_on_cliff) and ((jump_just_pressed and is_on_floor) or (jump_just_pressed and can_double_jump > double_jumped)):
 		_velocity.y = -50
 		jump_was_pressed = true
@@ -175,7 +173,8 @@ func _physics_process(_delta):
 		reset_to_last_checkpoint()
 	
 	# actually moving
-	var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if jump_just_pressed else Vector2.ZERO
+	
+	var snap_vector = Vector2.DOWN * FLOOR_DETECT_DISTANCE if !jump_just_pressed else Vector2.ZERO
 	_velocity = move_and_slide_with_snap(
 		_velocity, snap_vector, FLOOR_NORMAL, false, 4, 0.9, false
 	)
@@ -189,6 +188,7 @@ func _physics_process(_delta):
 	
 	# animation
 	var animation = get_new_animation()
+	print(animation, is_on_floor(), _velocity.y)
 	if animation != animation_player.current_animation:
 		animation_player.play(animation)
 
