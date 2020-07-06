@@ -18,6 +18,35 @@ const IndexPage = () => (
       <div className="change-log">
         <h2 className="change-log__title">Changelog</h2>
         <div className="change-log__entry">
+          <h2 className="change-log__entry-title">alpha 0.0.2</h2>
+          <p className="change-log__entry-description">
+            Some tweaks fixes and updates.
+          </p>
+          <ul className="change-log__entry-list">
+            <li>
+              added icon
+            </li>
+            <li>
+              added wall_hang, dash and wall_jump animation
+            </li>
+            <li>
+              tweaked some walljumping values
+            </li>
+            <li>
+              changed cat algorithm a little
+            </li>
+            <li>
+              added walljumping
+            </li>
+            <li>
+              added saving coins on ESC
+            </li>
+            <li>
+              changed menu background
+            </li>
+          </ul>
+        </div>
+        <div className="change-log__entry">
           <h2 className="change-log__entry-title">alpha 0.0.1</h2>
           <p className="change-log__entry-description">
             Released first alpha version.
