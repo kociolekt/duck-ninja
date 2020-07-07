@@ -124,7 +124,7 @@ func _physics_process(_delta):
 	if is_on_floor:
 		double_jumped = 0
 	
-	if (not is_wall_jump_eligible or is_on_cliff) and ((jump_just_pressed and is_on_floor) or (jump_just_pressed and can_double_jump > double_jumped)):
+	if (not is_wall_jump_eligible or is_on_cliff or is_on_floor) and ((jump_just_pressed and is_on_floor) or (jump_just_pressed and can_double_jump > double_jumped)):
 		_velocity.y = -50
 		jump_was_pressed = true
 		if not is_on_floor:
