@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cat2_green_eyes.png-3ca90a3fa8e90f72b5b66fdcb4141f5d.stex"
+path="res://.import/cat-sprite.png-cefa549d6f7d48b4e05f6bb749f72033.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/companion/cat2_green_eyes.png"
-dest_files=[ "res://.import/cat2_green_eyes.png-3ca90a3fa8e90f72b5b66fdcb4141f5d.stex" ]
+source_file="res://assets/companion/cat-sprite.png"
+dest_files=[ "res://.import/cat-sprite.png-cefa549d6f7d48b4e05f6bb749f72033.stex" ]
 
 [params]
 

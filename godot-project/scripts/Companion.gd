@@ -6,8 +6,12 @@ const FLOOR_DETECT_DISTANCE = 1.0
 onready var player = $"../Player"
 onready var map = $"../MapGenerator"
 
+onready var sprite = $Sprite
+onready var animation_player = $AnimationPlayer
+
 var friction = 5
 var max_speed = 20
+var move_direction = 0
 
 enum State {WALK, JUMP, TELEPORT, IDLE}
 var current_state = State.IDLE
@@ -80,14 +84,33 @@ func _process(delta):
 	_velocity = move_and_slide_with_snap(
 		_velocity, snap_vector, FLOOR_NORMAL, false, 4, 0.9, false
 	)
+	
+	# sprite direction
+	if move_direction != 0:
+		sprite.scale.x = 1 if move_direction == 1 else -1
+		
+	# animation
+	var animation = get_new_animation()
+	if animation != animation_player.current_animation:
+		animation_player.play(animation)
 
+
+func get_new_animation():
+	var animation_new = ""
+	if is_on_floor():
+		animation_new = "walk" if abs(_velocity.x) > 0.1 else "idle"
+	else:
+		animation_new = "jump"
+	return animation_new
+	
 func do_walk_to_position(target_position):
 	var sub_x = target_position.x - global_position.x
 	var direction_x = sign(sub_x)
-	var distance_x = abs(sub_x) 
+	var distance_x = abs(sub_x)
 	
 	_velocity.x = (_velocity.x + direction_x) if abs(_velocity.x) < max_speed else direction_x * max_speed
-	
+	move_direction = direction_x
+
 	if distance_x < 0.3:
 		global_position.x = target_position.x
 		
@@ -105,6 +128,8 @@ func do_jump_to_position(target_position, delta):
 	var sub_x = target_position.x - global_position.x
 	var direction_x = sign(sub_x)
 	var distance_x = abs(sub_x)
+	
+	move_direction = direction_x
 	
 	if !is_jumping:
 		var mid_point_x = global_position.x + int(sub_x / 2)
