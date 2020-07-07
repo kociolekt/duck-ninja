@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/map_grass/tileset/basic_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Challenge.gd" type="Script" id=2]
 [ext_resource path="res://scenes/coin/Coin.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/checkpoint/Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/checkpoint/Exit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/checkpoint/Entrance.tscn" type="PackedScene" id=5]
 
 [node name="map" type="TileMap"]
 position = Vector2( -120, 256 )
@@ -14,8 +15,6 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -196602, 2, 3, -131069, 2, 0, -131068, 2, 2, -131066, 2, 65539, -65536, 2, 3, -65534, 2, 0, -65533, 2, 196612, -65532, 2, 65538, -65530, 2, 65539, -65527, 2, 5, -65526, 2, 65543, -65525, 2, 1, -65524, 2, 1, -65523, 2, 1, -65522, 2, 2, 0, 2, 65539, 2, 2, 65536, 3, 2, 262144, 4, 2, 65538, 6, 2, 65539, 10, 2, 65536, 11, 2, 65537, 12, 2, 262147, 13, 2, 65537, 14, 2, 65538, 65536, 2, 65539, 65538, 2, 65536, 65539, 2, 262144, 65540, 2, 65538, 65542, 2, 65539, 65546, 2, 65536, 65547, 2, 65537, 65548, 2, 196609, 65549, 2, 262144, 65550, 2, 65538, 131072, 2, 65539, 131074, 2, 65536, 131075, 2, 65537, 131076, 2, 65538, 131078, 2, 65539, 131082, 2, 65536, 131083, 2, 262144, 131084, 2, 196608, 131085, 2, 196609, 131086, 2, 65538, 196608, 2, 65539, 196610, 2, 65536, 196611, 2, 65537, 196612, 2, 65538, 196614, 2, 65539, 196618, 2, 65536, 196619, 2, 262144, 196620, 2, 65537, 196621, 2, 65537, 196622, 2, 65538, 262144, 2, 131075, 262146, 2, 131072, 262147, 2, 131073, 262148, 2, 131074, 262150, 2, 131075, 262154, 2, 131072, 262155, 2, 131073, 262156, 2, 131073, 262157, 2, 131073, 262158, 2, 131074 )
 script = ExtResource( 2 )
-start = Vector2( 0, -1 )
-end = Vector2( 14, -1 )
 
 [node name="Coin" parent="." instance=ExtResource( 3 )]
 position = Vector2( 104, -55 )
@@ -23,5 +22,14 @@ position = Vector2( 104, -55 )
 [node name="Coin2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 170, -24 )
 
-[node name="Checkpoint" parent="." instance=ExtResource( 4 )]
-position = Vector2( 8, -28 )
+[node name="Entrance" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8, -24 )
+
+[node name="Exit" parent="." instance=ExtResource( 4 )]
+position = Vector2( 232, -24 )
+
+[node name="Entrance2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 88, 72 )
+
+[node name="Exit2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 24, 72 )

@@ -85,9 +85,6 @@ func load_game():
 		elif node_data.has("path"):
 			var tree_object = get_node(node_data.path)
 			if tree_object:
-				print("loading")
-				print(node_data.path)
-				print(tree_object)
 				# Now we set the remaining variables.
 				for i in node_data.keys():
 					if i == "filename" or i == "path" or i == "parent" or i == "pos_x" or i == "pos_y":

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/map_grass/tileset/basic_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/Challenge.gd" type="Script" id=2]
 [ext_resource path="res://scenes/coin/Coin.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/checkpoint/Checkpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/checkpoint/Exit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/checkpoint/Entrance.tscn" type="PackedScene" id=5]
 
 [node name="map" type="TileMap"]
 position = Vector2( 240, 64 )
@@ -14,8 +15,6 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 327684, 2, 3, 327687, 2, 0, 327688, 2, 1, 327689, 2, 2, 393218, 2, 0, 393219, 2, 1, 393220, 2, 65541, 393223, 2, 65536, 393224, 2, 262147, 393225, 2, 65538, 393228, 2, 0, 393229, 2, 1, 393230, 2, 2, 458752, 2, 0, 458753, 2, 1, 458754, 2, 196612, 458755, 2, 65537, 458756, 2, 65538, 458759, 2, 65536, 458760, 2, 196611, 458761, 2, 65538, 458764, 2, 65536, 458765, 2, 196610, 458766, 2, 65538, 524288, 2, 65536, 524289, 2, 196608, 524290, 2, 65537, 524291, 2, 262145, 524292, 2, 65538, 524295, 2, 65536, 524296, 2, 65537, 524297, 2, 65538, 524300, 2, 65536, 524301, 2, 262144, 524302, 2, 65538, 589824, 2, 65536, 589825, 2, 65537, 589826, 2, 262144, 589827, 2, 196609, 589828, 2, 65538, 589831, 2, 65536, 589832, 2, 262147, 589833, 2, 131076, 589834, 2, 1, 589835, 2, 1, 589836, 2, 196612, 589837, 2, 65537, 589838, 2, 65538, 655360, 2, 65536, 655361, 2, 65537, 655362, 2, 262144, 655363, 2, 65537, 655364, 2, 65538, 655367, 2, 65536, 655368, 2, 262144, 655369, 2, 196608, 655370, 2, 65537, 655371, 2, 262145, 655372, 2, 65537, 655373, 2, 196609, 655374, 2, 65538, 720896, 2, 131072, 720897, 2, 262148, 720898, 2, 262144, 720899, 2, 196611, 720900, 2, 65538, 720903, 2, 65536, 720904, 2, 262144, 720905, 2, 65537, 720906, 2, 65537, 720907, 2, 65537, 720908, 2, 262144, 720909, 2, 196609, 720910, 2, 65538, 786433, 2, 131072, 786434, 2, 131073, 786435, 2, 131073, 786436, 2, 131074, 786439, 2, 65536, 786440, 2, 65537, 786441, 2, 65537, 786442, 2, 65537, 786443, 2, 65537, 786444, 2, 196608, 786445, 2, 262144, 786446, 2, 65538, 851975, 2, 131072, 851976, 2, 131073, 851977, 2, 131073, 851978, 2, 131073, 851979, 2, 131073, 851980, 2, 131073, 851981, 2, 131073, 851982, 2, 131074 )
 script = ExtResource( 2 )
-start = Vector2( 0, 7 )
-end = Vector2( 14, 6 )
 
 [node name="Coin" parent="." instance=ExtResource( 3 )]
 position = Vector2( 75, 73 )
@@ -23,5 +22,8 @@ position = Vector2( 75, 73 )
 [node name="Coin2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 202, 86 )
 
-[node name="Checkpoint" parent="." instance=ExtResource( 4 )]
-position = Vector2( 9, 101 )
+[node name="Entrance" parent="." instance=ExtResource( 5 )]
+position = Vector2( 8, 104 )
+
+[node name="Exit" parent="." instance=ExtResource( 4 )]
+position = Vector2( 232, 88 )
